@@ -1,0 +1,9 @@
+<%= form_with model: @user, id: "sign_up", form_tag: "sign_up", data: { type: :json }, url: "create" do |f| %>
+    <p><%= f.text_field :firstname %></p>
+    <p><%= f.text_field :lastname %></p>
+    <p><%= f.email_field :email %></p>
+    <p><%= f.password_field :pass %></p>
+    <p><%= f.password_field :pass2 %></p>
+    <div id="errors"></div>
+    <p><%= f.submit %></p>
+<% end %> 
