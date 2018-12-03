@@ -1,6 +1,7 @@
 <!-- <h1><%= @header %></h1> -->
-<%= form_for :sign_in do |f| %>
-<p><%= f.text_field :email %></p>
-<p><%= f.submit %></p>
+<%= form_with model: @user, id: "sign_in", form_tag: "sign_in", data: { type: :json }, url: "authorise" do |f| %>
+    <p><%= f.email_field :email %></p>
+    <p><%= f.password_field :pass %></p>
+    <p><%= f.submit %></p>
 <% end %>
 <%= button_to "Sign up", :sign_up, method: :get %>

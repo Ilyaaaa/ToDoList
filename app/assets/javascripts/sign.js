@@ -10,6 +10,6 @@ $(function() {
             $('#errors').append(data[num])
 
     }).on ('ajax:error', function(e, xdr, status, error) {
-        console.log (error)
+        console.log(xdr.responseText)
     });
 });
