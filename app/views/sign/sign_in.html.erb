@@ -3,5 +3,6 @@
     <p><%= f.email_field :email %></p>
     <p><%= f.password_field :pass %></p>
     <p><%= f.submit %></p>
+    <div id="errors"></div>
 <% end %>
 <%= button_to "Sign up", :sign_up, method: :get %>

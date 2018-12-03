@@ -4,7 +4,17 @@ class SignController < ApplicationController
     end
 
     def authorise
-        @user = User.find(params[:email])
+        @errors = Array.new
+
+        begin
+            @user = User.find_by email: user_params[:email]
+
+            if @user == nil
+                @errors.push("Such user does not exists")
+            elsif(@user.pass != user_params[:pass])
+                @errors.push("Invalid password")
+            end
+        end
     end
 
     def sign_up
