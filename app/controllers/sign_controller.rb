@@ -1,5 +1,6 @@
 class SignController < ApplicationController
     def sign_in
+        session_exsists_check
         @user = User.new
     end
 
@@ -11,13 +12,16 @@ class SignController < ApplicationController
 
             if @user == nil
                 @errors.push("Such user does not exists")
-            elsif(@user.pass != user_params[:pass])
+            elsif @user.pass != user_params[:pass]
                 @errors.push("Invalid password")
+            else
+                session[:user_id] = @user.id
             end
         end
     end
 
     def sign_up
+        session_exsists_check
         @user = User.new
     end
 
@@ -38,10 +42,17 @@ class SignController < ApplicationController
     end
 
     def confirm
-        
+        session_exsists_check
     end
 
     private def user_params
         params.require(:user).permit(:firstname, :lastname, :email, :pass)
     end
+
+    private def session_exsists_check
+        if session[:user_id] != nil
+            redirect_to ''
+        end
+    end
+    
 end

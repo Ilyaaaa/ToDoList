@@ -1,8 +1,7 @@
 $(function() {
     $('#sign_in').on('ajax:success', function(e, data, status, xhr) {
-        if(data.length == 0){
-            console.log("success")
-        }
+        if(data.length == 0)
+            window.location.replace("")
         
         $('#errors').empty()
         for (var num in data)

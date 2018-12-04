@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  root 'sign#sign_in'
+  root 'list#index'
+  get 'sign_in' => 'sign#sign_in'
   get 'sign_up' => 'sign#sign_up'
   post 'create' => 'sign#create'
   post 'authorise' => 'sign#authorise'
