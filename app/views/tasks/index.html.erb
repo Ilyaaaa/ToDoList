@@ -1,0 +1,18 @@
+<%= form_with model: @task, id: "create_task", form_tag: "create_task", data: { type: :json }, url: "tasks/create" do |f| %>
+    <%= f.hidden_field(:user_id, :value => session[:user_id]) %>
+    <p><%= f.text_field :title %></p>
+    <p><%= f.text_area :description %></p>
+    <%= f.number_field(:priority, in: 1..100, step: 1, :value => 1) %>
+    <p><%= f.date_field :due_date %></p>
+    <div id="create_errors"></div>
+    <p><%= f.submit %></p>
+<% end %>
+
+<ul id="tasks">
+    <% @tasks.each do |task| %>
+        <li><%= task.title %></li>
+    <% end %>
+<ul>
+
+
+    
