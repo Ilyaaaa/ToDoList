@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   post 'tasks/id' => 'tasks#get'
   post 'tasks' => 'tasks#get_all'
   post 'tasks/create' => 'tasks#create'
-  delete 'tasks/:id/edit' => 'tasks#edit'
+  patch 'tasks/:id/edit' => 'tasks#edit'
   delete 'tasks/:id/delete' => 'tasks#delete'
 
 

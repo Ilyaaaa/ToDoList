@@ -11,8 +11,10 @@ $(function() {
     }).on ('ajax:error', function(e, xdr, status, error) {
         console.log(xdr.responseText)
     });
+
+    $('a#delete_task').on('ajax:success', function(e, data, status, xhr) {
+        $("#task" + data.id).remove()
+    }).on ('ajax:error', function(e, xdr, status, error) {
+        console.log(xdr.responseText)
+    });
 });
-
-function create_task_html(task) {
-
-}

@@ -2,5 +2,6 @@
     <h4><%= task.title %></h4>
     <%= task.description %><br>
     <%= task.priority %><br>
-    <%= task.due_date %>
+    <%= task.due_date %><br>
+    <%= link_to "Delete", "tasks/" + task.id.to_s + "/delete", id: "delete_task", remote: true, method: :delete %>
 </li>
