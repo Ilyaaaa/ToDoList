@@ -1,1 +1,2 @@
-json.array! @errors
+json.task_html render @task
+json.errors @errors

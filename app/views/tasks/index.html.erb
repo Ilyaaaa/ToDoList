@@ -9,9 +9,7 @@
 <% end %>
 
 <ul id="tasks">
-    <% @tasks.each do |task| %>
-        <li><%= task.title %></li>
-    <% end %>
+    <%= render @tasks %>
 <ul>
 
 

@@ -1,7 +1,7 @@
 class TasksController < ApplicationController
     def index
         session_exsists_check
-        @tasks = Task.all
+        @tasks = Task.where(user_id: session[:user_id])
         @task = Task.new
     end
 
