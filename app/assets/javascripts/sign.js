@@ -5,10 +5,11 @@ $(function() {
         
         $('#errors').empty()
         for (var num in data)
-            $('#errors').append(data[num])
+            $('#errors').append(data[num].alert)
 
     }).on ('ajax:error', function(e, xdr, status, error) {
         console.log(xdr.responseText)
+        console.log(error)
     });
 
     $('#sign_up').on('ajax:success', function(e, data, status, xhr) {
@@ -17,7 +18,7 @@ $(function() {
         
         $('#errors').empty()
         for (var num in data)
-            $('#errors').append(data[num])
+            $('#errors').append(data[num].alert)
 
     }).on ('ajax:error', function(e, xdr, status, error) {
         console.log(xdr.responseText)

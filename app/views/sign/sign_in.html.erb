@@ -1,8 +1,8 @@
-<!-- <h1><%= @header %></h1> -->
-<%= form_with model: @user, id: "sign_in", form_tag: "sign_in", data: { type: :json }, url: "authorise" do |f| %>
-    <p><%= f.email_field :email %></p>
-    <p><%= f.password_field :pass %></p>
-    <p><%= f.submit %></p>
+<%= form_with model: @user, id: "sign_in", form_tag: "sign_in", class: "form-sign",  data: { type: :json }, url: "authorise" do |f| %>
+    <h2>Sign in</h2>
+    <%= f.email_field :email, class: "form-control top-form-input", placeholder: "Email" %>
+    <%= f.password_field :pass, class: "form-control bottom-form-input", placeholder: "Password" %>
     <div id="errors"></div>
+    <%= f.submit "Sign in", class: "btn btn-lg btn-primary btn-block" %>
+    <%= link_to "Sign up", :sign_up, method: :get %>
 <% end %>
-<%= button_to "Sign up", :sign_up, method: :get %>

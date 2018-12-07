@@ -6,7 +6,7 @@ $(function() {
         
         $('#errors').empty()
         for (var num in data.errors)
-            $('#create_errors').append(data.errors[num])
+            $('#create_errors').append(data.errors[num].alert)
 
     }).on ('ajax:error', function(e, xdr, status, error) {
         console.log(xdr.responseText)
