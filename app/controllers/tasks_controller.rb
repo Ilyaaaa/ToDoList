@@ -10,8 +10,11 @@ class TasksController < ApplicationController
         @task = Task.find(params[:id])
     end
 
-    def get_all
-        
+    def toggle
+        session_exsists_check
+        @task = Task.find(params[:id])
+
+        @task.update(task_params)
     end
 
     def create
@@ -42,7 +45,7 @@ class TasksController < ApplicationController
     end
 
     private def task_params
-        params.require(:task).permit(:user_id, :title, :description, :priority, :due_date)
+        params.require(:task).permit(:user_id, :title, :description, :priority, :due_date, :completed)
     end
     
     

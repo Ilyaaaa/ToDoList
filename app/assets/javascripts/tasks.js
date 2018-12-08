@@ -20,6 +20,13 @@ $(function() {
         console.log(xdr.responseText);
     });
 
+    $('#lists').on('ajax:success', '#completed_form', function(e, data, status, xhr) {
+        $('#task' + data.id).find('#completed').prop('checked', data.completed);
+
+    }).on ('ajax:error', function(e, xdr, status, error) {
+        console.log(xdr.responseText);
+    });
+
     $('#create_task_modal').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget);
 
@@ -47,5 +54,10 @@ $(function() {
                 dueDate.val(data.due_date);
             });
         }
+    });
+
+    $('#lists').bind('click', '#completed', function(event) {
+        event.preventDefault();
+        $(event.target.form).trigger('submit.rails');
     });
 });

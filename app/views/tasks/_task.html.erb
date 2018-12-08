@@ -1,4 +1,7 @@
 <li id="task<%= task.id %>">
+    <%= form_with model: task, id: "completed_form", form_tag: "completed_form", data: { type: :json }, url: "tasks/" + task.id.to_s + "/toggle" do |f| %>
+        <%= f.check_box :completed, id: "completed", class: "form-control" %>
+    <% end %>
     <h4><%= task.title %></h4>
     <%= task.description %><br>
     <%= task.priority %><br>

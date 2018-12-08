@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
   root 'tasks#index'
   get 'tasks/:id' => 'tasks#get'
-  post 'tasks' => 'tasks#get_all'
   post 'tasks/create' => 'tasks#create'
   post 'tasks/:id/edit' => 'tasks#edit'
   delete 'tasks/:id/delete' => 'tasks#delete'
+  patch 'tasks/:id/toggle' => 'tasks#toggle'
 
 
   get 'sign_in' => 'sign#sign_in'
