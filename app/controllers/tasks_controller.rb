@@ -6,7 +6,8 @@ class TasksController < ApplicationController
     end
 
     def get
-
+        session_exsists_check
+        @task = Task.find(params[:id])
     end
 
     def get_all
@@ -25,7 +26,14 @@ class TasksController < ApplicationController
     end
 
     def edit
-        
+        @task = Task.find(params[:id])
+
+        @errors = Array.new
+        if !@task.update(task_params)
+            @task.errors.full_messages.each do |msg|
+                @errors.push(msg)
+            end
+        end
     end
 
     def delete

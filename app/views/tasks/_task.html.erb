@@ -4,4 +4,5 @@
     <%= task.priority %><br>
     <%= task.due_date %><br>
     <%= link_to "Delete", "tasks/" + task.id.to_s + "/delete", id: "delete_task", remote: true, method: :delete %>
+    <button type="button" id="edit_task_btn" class="btn btn-default" data-toggle="modal" data-target="#create_task_modal" data-task-id=<%= task.id %>>Edit</button>
 </li>

@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 2018_12_04_174242) do
     t.text "description"
     t.integer "priority"
     t.date "due_date"
+    t.boolean "completed", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_tasks_on_user_id"

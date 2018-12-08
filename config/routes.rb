@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
   root 'tasks#index'
-  post 'tasks/id' => 'tasks#get'
+  get 'tasks/:id' => 'tasks#get'
   post 'tasks' => 'tasks#get_all'
   post 'tasks/create' => 'tasks#create'
-  patch 'tasks/:id/edit' => 'tasks#edit'
+  post 'tasks/:id/edit' => 'tasks#edit'
   delete 'tasks/:id/delete' => 'tasks#delete'
 
 
