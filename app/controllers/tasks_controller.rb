@@ -1,7 +1,9 @@
 class TasksController < ApplicationController
     def index
         session_exsists_check
-        @tasks = Task.where(user_id: session[:user_id])
+        @tasks = Task.where(user_id: session[:user_id], completed: false)
+        @completed_tasks = Task.where(user_id: session[:user_id], completed: true)
+
         @task = Task.new
     end
 
