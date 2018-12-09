@@ -48,6 +48,7 @@ $(function() {
         var dueDate = $('#task_form_due_date');
         
         form.trigger('reset');
+        $('#task_errors').empty();
 
         var header = $('#task_form_header');
         var taskId = button.data('task-id');
