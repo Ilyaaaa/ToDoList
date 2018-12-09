@@ -5,15 +5,13 @@
                 <%= f.check_box :completed, id: "completed", class: "form-control" %>
             <% end %>
             <h5 class="mb-0">
-                <button id="task_title" class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse<%= task.id %>" aria-expanded="true" aria-controls="collapse<%= task.id %>">
-                    <%= task.title %>
-                </button>
+                <button id="task_title" class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse<%= task.id %>" aria-expanded="true" aria-controls="collapse<%= task.id %>"><%= task.title %></button>
             </h5>
         </div>
         <div id="collapse<%= task.id %>" class="collapse" aria-labelledby="task<%= task.id %>header" data-parent="#lists">
             <div class="card-body">
                 <%= task.description %><br>
-                <%= task.priority %><br>
+                <p id="task_priority"><%= task.priority %></p>
                 <%= task.due_date %><br>
                 <%= link_to "Delete", "tasks/" + task.id.to_s + "/delete", id: "delete_task", remote: true, method: :delete %>
                 <button type="button" id="edit_task_btn" class="btn btn-default" data-toggle="modal" data-target="#create_task_modal" data-task-id=<%= task.id %>>

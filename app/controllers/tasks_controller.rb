@@ -3,7 +3,9 @@ class TasksController < ApplicationController
         session_exsists_check
         @tasks = Task.where(user_id: session[:user_id], completed: false)
         @completed_tasks = Task.where(user_id: session[:user_id], completed: true)
-        @user = User.find(session[:user_id])
+        if session[:user_id] != nil
+            @user = User.find(session[:user_id]) 
+        end
 
         @task = Task.new
     end
