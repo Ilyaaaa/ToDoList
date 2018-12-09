@@ -3,6 +3,19 @@
     height: 100%;
 }
 
-.lists-container {
+.flex-container {
     display: flex;
+}
+
+.tasks-list {
+    width: 50%;
+    padding: 12px;
+}
+
+p.username {
+    color: rgb(255, 255, 255);
+    font-weight: 500;
+    margin-left: 12px;
+    margin-right: 12px;
+    margin-bottom: 0px;
 }

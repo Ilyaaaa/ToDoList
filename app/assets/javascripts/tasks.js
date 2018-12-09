@@ -1,4 +1,7 @@
 $(function() {
+    $('*[id*=task_title]').each(function() {
+        console.log(this);
+    })
     $('#task_form').on('ajax:success', function(e, data, status, xhr) {
         if(data.errors.length == 0){
             $("#task" + data.task_id).remove();

@@ -1,11 +1,25 @@
-<li id="task<%= task.id %>">
-    <%= form_with model: task, id: "completed_form", form_tag: "completed_form", data: { type: :json }, url: "tasks/" + task.id.to_s + "/toggle" do |f| %>
-        <%= f.check_box :completed, id: "completed", class: "form-control" %>
-    <% end %>
-    <h4><%= task.title %></h4>
-    <%= task.description %><br>
-    <%= task.priority %><br>
-    <%= task.due_date %><br>
-    <%= link_to "Delete", "tasks/" + task.id.to_s + "/delete", id: "delete_task", remote: true, method: :delete %>
-    <button type="button" id="edit_task_btn" class="btn btn-default" data-toggle="modal" data-target="#create_task_modal" data-task-id=<%= task.id %>>Edit</button>
-</li>
+<div id="task<%= task.id %>" class="card">
+    <div class="card">
+        <div class="navbar navbar-expand-lg navbar-light bg-light card-header" id="task<%= task.id %>header">
+            <%= form_with model: task, id: "completed_form", form_tag: "completed_form", class: "form", data: { type: :json }, url: "tasks/" + task.id.to_s + "/toggle" do |f| %>
+                <%= f.check_box :completed, id: "completed", class: "form-control" %>
+            <% end %>
+            <h5 class="mb-0">
+                <button id="task_title" class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse<%= task.id %>" aria-expanded="true" aria-controls="collapse<%= task.id %>">
+                    <%= task.title %>
+                </button>
+            </h5>
+        </div>
+        <div id="collapse<%= task.id %>" class="collapse" aria-labelledby="task<%= task.id %>header" data-parent="#lists">
+            <div class="card-body">
+                <%= task.description %><br>
+                <%= task.priority %><br>
+                <%= task.due_date %><br>
+                <%= link_to "Delete", "tasks/" + task.id.to_s + "/delete", id: "delete_task", remote: true, method: :delete %>
+                <button type="button" id="edit_task_btn" class="btn btn-default" data-toggle="modal" data-target="#create_task_modal" data-task-id=<%= task.id %>>
+                    Edit
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

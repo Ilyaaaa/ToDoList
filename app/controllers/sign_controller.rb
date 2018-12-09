@@ -25,6 +25,12 @@ class SignController < ApplicationController
         @user = User.new
     end
 
+    def log_out
+        session[:user_id] = nil
+        redirect_to sign_in_path
+    end
+    
+
     def create
         @user = User.new(user_params)
 
