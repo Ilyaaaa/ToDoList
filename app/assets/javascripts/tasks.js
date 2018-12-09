@@ -187,4 +187,15 @@ $(function() {
         for (var num in titles) titles[num][1].appendTo(titles[num][2]);
         sortMode = 1;
     }
+
+
+    $("#lists").on("mouseenter", ".card-header", function() {
+        $(this).find("#edit_task_btn").removeClass("invisible");
+        $(this).find("#delete_task").removeClass("invisible");
+    });
+
+    $("#lists").on("mouseleave", ".card-header", function() {
+        $(this).find("#edit_task_btn").addClass("invisible");
+        $(this).find("#delete_task").addClass("invisible");
+    });
 });

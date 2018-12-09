@@ -4,24 +4,23 @@
             <%= form_with model: task, id: "completed_form", form_tag: "completed_form", class: "form", data: { type: :json }, url: "tasks/" + task.id.to_s + "/toggle" do |f| %>
                 <%= f.check_box :completed, id: "completed", class: "form-control" %>
             <% end %>
-            
-            <h5 class="mb-0 mr-auto">
-                <button id="task_title" class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse<%= task.id %>" aria-expanded="true" aria-controls="collapse<%= task.id %>"><%= task.title %></button>
-            </h5>
 
+                <button id="task_title" class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse<%= task.id %>" aria-expanded="true" aria-controls="collapse<%= task.id %>">
+                    <span class="h3 text-dark"><%= task.title %></span>
+                </button>
+            <button type="button" id="edit_task_btn" class="btn btn-outline-success task-header-btn invisible" data-toggle="modal" data-target="#create_task_modal" data-task-id=<%= task.id %>>Edit</button>
+            <%= link_to "Delete", "tasks/" + task.id.to_s + "/delete", id: "delete_task", class: "btn btn-outline-danger task-header-btn mr-auto invisible", remote: true, method: :delete %>
+            
             <form id="mark_from" class="form invisible">
                 <input id="marked" class="form-control" type="checkbox" data-task-id=<%= task.id %>>
             </form>
         </div>
         <div id="collapse<%= task.id %>" class="collapse" aria-labelledby="task<%= task.id %>header" data-parent="#lists">
             <div class="card-body">
-                <%= task.description %><br>
+                <p class="font-weight-bold">Description:</p>
+                <p><%= task.description %></p>
                 <p id="task_priority"><%= task.priority %></p>
                 <%= task.due_date %><br>
-                <%= link_to "Delete", "tasks/" + task.id.to_s + "/delete", id: "delete_task", remote: true, method: :delete %>
-                <button type="button" id="edit_task_btn" class="btn btn-default" data-toggle="modal" data-target="#create_task_modal" data-task-id=<%= task.id %>>
-                    Edit
-                </button>
             </div>
         </div>
     </div>
