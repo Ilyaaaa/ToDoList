@@ -35,16 +35,11 @@ class SignController < ApplicationController
         @user = User.new(user_params)
 
         @errors = Array.new
-        begin
-            if !@user.save
-                @user.errors.full_messages.each do |msg|
-                    @errors.push(msg)
-                end
-            end    
-        rescue ActiveRecord::RecordNotUnique => exception
-            @errors.push("Such user already exist")
-        end
-        
+        if !@user.save
+            @user.errors.full_messages.each do |msg|
+                @errors.push(msg)
+            end
+        end   
     end
 
     def confirm
@@ -52,7 +47,7 @@ class SignController < ApplicationController
     end
 
     private def user_params
-        params.require(:user).permit(:firstname, :lastname, :email, :pass)
+        params.require(:user).permit(:firstname, :lastname, :email, :pass, :pass_confirmation)
     end
 
     private def session_exsists_check

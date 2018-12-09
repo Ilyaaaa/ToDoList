@@ -29,7 +29,7 @@
                         <%= f.text_field :title, id: "task_form_title", class: "form-control", placeholder: "Title" %>
                         <%= f.text_area :description, id: "task_form_desc", class: "form-control", placeholder: "Description" %>
                         <%= f.number_field(:priority, in: 1..100, step: 1, value: 1, id: "task_form_priority", class: "form-control", placeholder: "Password") %>
-                        <%= f.date_field :due_date, id: "task_form_due_date", class: "form-control", placeholder: "Due date" %>
+                        <%= f.date_field :due_date, id: "task_form_due_date", class: "form-control", min: Date.today, placeholder: "Due date" %>
                         <div id="task_errors"></div>  
                 </div>
                 <div class="modal-footer">

@@ -11,7 +11,7 @@ $(function() {
             $('#create_task_modal').modal('toggle');
         }
         
-        $('#errors').empty();
+        $('#task_errors').empty();
         for (var num in data.errors)
             $('#task_errors').append(data.errors[num].alert);
 

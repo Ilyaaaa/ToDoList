@@ -4,7 +4,7 @@
     <%= f.text_field :lastname, class: "form-control middle-form-input", placeholder: "Last name" %>
     <%= f.email_field :email, class: "form-control middle-form-input", placeholder: "Email" %>
     <%= f.password_field :pass, class: "form-control middle-form-input", placeholder: "Password" %>
-    <%= f.password_field :pass2, class: "form-control bottom-form-input", placeholder: "Repeat password" %>
+    <%= f.password_field :pass_confirmation, class: "form-control bottom-form-input", placeholder: "Repeat password" %>
     <div id="errors"></div>
     <%= f.submit "Sign up", class: "btn btn-lg btn-primary btn-block"%>
     <%= link_to "Sign in", :sign_in, method: :get %>
