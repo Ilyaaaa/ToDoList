@@ -49,6 +49,12 @@ class TasksController < ApplicationController
         @task.destroy
     end
 
+    def batch_delete
+        @id_arr = JSON.parse(params[:task_id_arr])
+        Task.where(id: @id_arr).delete_all
+    end
+    
+
     private def task_params
         params.require(:task).permit(:user_id, :title, :description, :priority, :due_date, :completed)
     end

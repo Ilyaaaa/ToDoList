@@ -3,7 +3,13 @@
         <div class="navbar-brand">ToDo List</div>
         <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#create_task_modal">Create new task</button>
             <button id="title_sort_btn" type="button" class="btn btn-dark">Sort by title</button>
-            <button id="priority_sort_btn" type="button" class="btn btn-dark mr-auto">Sort by priority</button>
+            <button id="priority_sort_btn" type="button" class="btn btn-dark">Sort by priority</button>
+            <button id="batch_btn" type="button" class="btn btn-dark">Batch cheking</button>
+            <div id="batch_mode" class="mr-auto invisible batch_div">
+                <button id="check_btn" type="button" class="btn btn-warning">Check all</button>
+                <button id="uncheck_btn" type="button" class="btn btn-warning">Uncheck all</button>
+                <button id="batch_delete_btn" type="button" class="btn btn-danger ">Delete checked</button>
+            </div>
             <span class="navbar-text"><p class="username"><%= @user.firstname + ' ' + @user.lastname %></p></span>
             <%= link_to "Log out", :log_out, method: :get, class: "btn btn-dark" %>
     </nav>

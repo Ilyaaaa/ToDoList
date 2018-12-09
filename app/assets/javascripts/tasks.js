@@ -2,6 +2,7 @@ $(function() {
     var sortMode = 0;
     sortByPriority();
 
+
     $('#task_form').on('ajax:success', function(e, data, status, xhr) {
         if(data.errors.length == 0){
             $("#task" + data.task_id).remove();
@@ -18,11 +19,13 @@ $(function() {
         console.log(xdr.responseText);
     });
 
+
     $('a#delete_task').on('ajax:success', function(e, data, status, xhr) {
         $("#task" + data.id).remove();
     }).on ('ajax:error', function(e, xdr, status, error) {
         console.log(xdr.responseText);
     });
+
 
     $('#lists').on('ajax:success', '#completed_form', function(e, data, status, xhr) {
         var taskDiv = $('#task' + data.id);
@@ -33,6 +36,7 @@ $(function() {
     }).on ('ajax:error', function(e, xdr, status, error) {
         console.log(xdr.responseText);
     });
+
 
     $('#create_task_modal').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget);
@@ -64,17 +68,71 @@ $(function() {
         sort();
     });
 
-    $('#lists').bind('click', '#completed', function(event) {
+
+    $('#lists').on('click', '#completed', function(event) {
         event.preventDefault();
         $(event.target.form).trigger('submit.rails');
     });
 
-    $('#title_sort_btn').bind('click', function() {
+
+    $('#title_sort_btn').on('click', function() {
         sortByTitle();
     });
 
-    $('#priority_sort_btn').bind('click', function() {
+
+    $('#priority_sort_btn').on('click', function() {
         sortByPriority();
+    });
+
+    function getAllMarks(){
+        return $('*[id*=marked]');
+    }
+
+    $('#batch_btn').on('click', function() {
+        if (!$(this).hasClass('active')){
+            $(this).addClass('active');
+            $('#batch_mode').removeClass('invisible');
+            getAllMarks().each(function() {
+                $(this.form).removeClass('invisible');
+            });
+        } else{
+            $(this).removeClass('active');
+            $('#batch_mode').addClass('invisible');
+            getAllMarks().each(function() {
+                $(this.form).addClass('invisible');
+                $(this).prop('checked', false);
+            });
+        }
+
+    });
+
+    $('#check_btn').on('click', function() {
+        getAllMarks().each(function() {
+            $(this).prop('checked', true);
+        });
+    });
+
+    $('#uncheck_btn').on('click', function() {
+        getAllMarks().each(function() {
+            $(this).prop('checked', false);
+        });
+    });
+
+    $('#batch_delete_btn').on('click', function() {
+        sortByPriority();
+        
+        var task_id_arr = [];
+        getAllMarks().each(function() {
+            if ($(this).prop('checked'))
+                task_id_arr.push($(this).attr('data-task-id'));
+        });
+
+        $.post('tasks/batch_delete', {task_id_arr: JSON.stringify(task_id_arr)})
+        .done(function(data) {
+            for (var i in data)
+                $('#task' + data[i]).remove();
+            $('#batch_btn').click();
+        });
     });
 
     function sort(){
@@ -95,6 +153,7 @@ $(function() {
         }
     }
 
+
     function sortByTitle() {
         var titles = [];
         $('*[id*=task_title]').each(function() {
@@ -112,6 +171,7 @@ $(function() {
         sortMode = 2;
 
     }
+
 
     function sortByPriority() {
         var titles = [];

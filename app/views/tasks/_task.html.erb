@@ -4,9 +4,14 @@
             <%= form_with model: task, id: "completed_form", form_tag: "completed_form", class: "form", data: { type: :json }, url: "tasks/" + task.id.to_s + "/toggle" do |f| %>
                 <%= f.check_box :completed, id: "completed", class: "form-control" %>
             <% end %>
-            <h5 class="mb-0">
+            
+            <h5 class="mb-0 mr-auto">
                 <button id="task_title" class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse<%= task.id %>" aria-expanded="true" aria-controls="collapse<%= task.id %>"><%= task.title %></button>
             </h5>
+
+            <form id="mark_from" class="form invisible">
+                <input id="marked" class="form-control" type="checkbox" data-task-id=<%= task.id %>>
+            </form>
         </div>
         <div id="collapse<%= task.id %>" class="collapse" aria-labelledby="task<%= task.id %>header" data-parent="#lists">
             <div class="card-body">

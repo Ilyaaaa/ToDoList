@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   post 'tasks/create' => 'tasks#create'
   post 'tasks/:id/edit' => 'tasks#edit'
   delete 'tasks/:id/delete' => 'tasks#delete'
+  post 'tasks/batch_delete' => 'tasks#batch_delete'
   patch 'tasks/:id/toggle' => 'tasks#toggle'
 
   get 'sign_in' => 'sign#sign_in'
