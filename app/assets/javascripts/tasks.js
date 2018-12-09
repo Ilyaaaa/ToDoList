@@ -21,8 +21,10 @@ $(function() {
     });
 
     $('#lists').on('ajax:success', '#completed_form', function(e, data, status, xhr) {
-        $('#task' + data.id).find('#completed').prop('checked', data.completed);
-
+        var taskDiv = $('#task' + data.id);
+        taskDiv.find('#completed').prop('checked', data.completed);
+        if (data.completed) taskDiv.prependTo($('#completed_tasks'));
+        else taskDiv.prependTo($('#tasks'));
     }).on ('ajax:error', function(e, xdr, status, error) {
         console.log(xdr.responseText);
     });
