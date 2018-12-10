@@ -9,8 +9,9 @@ Rails.application.routes.draw do
 
   get 'sign_in' => 'sign#sign_in'
   get 'sign_up' => 'sign#sign_up'
+  get 'success_sign_up' => 'sign#success'
   get 'log_out' => 'sign#log_out'
   post 'create' => 'sign#create'
   post 'authorise' => 'sign#authorise'
-  get 'confirm' => 'sign#confirm'
+  get 'confirm/:token' => 'sign#confirm', as: 'confirm_path'
 end

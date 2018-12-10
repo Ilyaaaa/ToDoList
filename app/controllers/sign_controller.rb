@@ -12,6 +12,8 @@ class SignController < ApplicationController
 
             if @user == nil
                 @errors.push("Such user does not exists")
+            elsif !@user.email_confirmed
+                @errors.push("Email not confirmed")
             elsif @user.pass != user_params[:pass]
                 @errors.push("Invalid password")
             else
@@ -35,15 +37,26 @@ class SignController < ApplicationController
         @user = User.new(user_params)
 
         @errors = Array.new
-        if !@user.save
+        if @user.save
+            UserMailer.registration_confirmation(@user).deliver
+        else
             @user.errors.full_messages.each do |msg|
                 @errors.push(msg)
             end
         end   
     end
 
+    def success
+        session_exsists_check
+    end
+    
+
     def confirm
         session_exsists_check
+        @user = User.find_by confirm_token: params[:token]
+        if @user
+            @user.activate_email
+        end
     end
 
     private def user_params

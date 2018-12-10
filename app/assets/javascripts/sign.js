@@ -14,7 +14,7 @@ $(function() {
 
     $('#sign_up').on('ajax:success', function(e, data, status, xhr) {
         if(data.length == 0)
-            window.location.replace("confirm")
+            window.location.replace("success_sign_up")
         
         $('#errors').empty()
         for (var num in data)
