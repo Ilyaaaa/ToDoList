@@ -26,10 +26,20 @@
                 <div class="modal-body">
                     <%= form_with model: @task, id: "task_form", form_tag: "task_form", data: { type: :json }, url: "" do |f| %>
                         <%= f.hidden_field(:user_id, :value => session[:user_id]) %>
-                        <%= f.text_field :title, id: "task_form_title", class: "form-control", placeholder: "Title" %>
-                        <%= f.text_area :description, id: "task_form_desc", class: "form-control", placeholder: "Description" %>
-                        <%= f.number_field(:priority, in: 1..100, step: 1, value: 1, id: "task_form_priority", class: "form-control", placeholder: "Password") %>
-                        <%= f.date_field :due_date, id: "task_form_due_date", class: "form-control", min: Date.today, placeholder: "Due date" %>
+                        <div class="form-group">
+                            <%= f.text_field :title, id: "task_form_title", class: "form-control", placeholder: "Title" %>
+                        </div>
+                        <div class="form-group">
+                            <%= f.text_area :description, id: "task_form_desc", class: "form-control", placeholder: "Description" %>
+                        </div>
+                        <div class="form-group">
+                            <label for="task_form_desc">Priority</label>
+                            <%= f.number_field(:priority, in: 1..100, step: 1, value: 1, id: "task_form_priority", class: "form-control", placeholder: "Password") %>
+                        </div>   
+                        <div class="form-group">
+                            <label for="task_form_desc">Due date</label>
+                            <%= f.date_field :due_date, id: "task_form_due_date", class: "form-control", min: Date.today, placeholder: "Due date" %>
+                        </div>
                         <div id="task_errors"></div>  
                 </div>
                 <div class="modal-footer">
