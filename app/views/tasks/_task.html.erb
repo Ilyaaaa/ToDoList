@@ -2,7 +2,7 @@
     <div class="card">
         <div class="navbar navbar-expand-lg navbar-light bg-light card-header" id="task<%= task.id %>header">
             <%= form_with model: task, id: "completed_form", form_tag: "completed_form", class: "form", data: { type: :json }, url: "tasks/" + task.id.to_s + "/toggle" do |f| %>
-                <%= f.check_box :completed, id: "completed", class: "form-control" %>
+                <%= f.check_box :completed, id: "completed", class: "form-control checkbox" %>
             <% end %>
 
                 <button id="task_title" class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse<%= task.id %>" aria-expanded="true" aria-controls="collapse<%= task.id %>">
@@ -12,7 +12,7 @@
             <%= link_to "Delete", "tasks/" + task.id.to_s + "/delete", id: "delete_task", class: "btn btn-outline-danger task-header-btn mr-auto invisible", remote: true, method: :delete %>
             
             <form id="mark_from" class="form invisible">
-                <input id="marked" class="form-control" type="checkbox" data-task-id=<%= task.id %>>
+                <input id="marked" class="form-control checkbox" type="checkbox" data-task-id=<%= task.id %>>
             </form>
         </div>
         <div id="collapse<%= task.id %>" class="collapse" aria-labelledby="task<%= task.id %>header" data-parent="#lists">
